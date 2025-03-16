@@ -112,10 +112,11 @@ Trip_Budget_System/
 ├── app.py                # Main application file
 ├── database.py           # Database connection and initialization
 ├── budget_data.py        # Sample data generation
+├── index.html            # Root HTML file for GitHub Pages redirect
 ├── static/
 │   └── style.css         # CSS styles
 ├── templates/
-│   └── index.html        # HTML template
+│   └── index.html        # HTML template for your Flask application
 ├── .env                  # Environment variables (not committed)
 ├── .gitignore            # Git ignore configuration
 ├── requirements.txt      # Project dependencies
