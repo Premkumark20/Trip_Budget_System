@@ -23,7 +23,7 @@ Trip Budget System is a comprehensive web application designed to help travelers
 *Note: This is a local web application that requires setup before use. The URL `http://127.0.0.1:5000/` will only work after you've completed the installation steps below and started the application on your local machine.*
 
 - Local Flask version: http://localhost:5000
-- GitHub Pages version: [https://Trip_Budget_System.github.com](https://trip-budget-system.onrender.com)
+- GitHub Pages version: [https://premkumark20.github.io/Trip_Budget_System](https://trip-budget-system.onrender.com)
 - Live Demo: https://trip-budget-system.onrender.com
 
 ## Technical Architecture
