@@ -17,6 +17,10 @@ Trip Budget System is a comprehensive web application designed to help travelers
 - **Train Classes**: Various train classes including First Class AC, Sleeper Class, AC Chair Car, and more
 - **Timing Options**: Comprehensive departure schedules for planning convenience
 
+## Demo
+
+*Note: This is a local web application that requires setup before use. The URL `http://127.0.0.1:5000/` will only work after you've completed the installation steps below and started the application on your local machine.*
+
 ## Technical Architecture
 
 ### Backend
@@ -38,7 +42,7 @@ Trip Budget System is a comprehensive web application designed to help travelers
 ### Prerequisites
 - Python 3.7+
 - pip package manager
-- Google Maps API key
+- Google Maps API key (Get one from [Google Cloud Platform](https://console.cloud.google.com/))
 
 ### Setup Process
 1. Clone the repository:
@@ -83,10 +87,11 @@ Trip Budget System is a comprehensive web application designed to help travelers
    ```
    http://127.0.0.1:5000/
    ```
+   This URL will only work on your local machine after starting the application.
 
 3. Enter journey details:
-   - Origin location
-   - Destination
+   - Origin location (e.g., "Chennai", "Madurai", "Coimbatore")
+   - Destination (e.g., "Tirunelveli", "Salem", "Kanchipuram")
    - Number of travelers
    - Budget allocation (optional)
 
@@ -112,22 +117,97 @@ Trip_Budget_System/
 └── README.md             # Project documentation
 ```
 
+## Deployment Options
+
+### Local Development Server
+The application runs on Flask's built-in development server by default, accessible at `http://127.0.0.1:5000/`.
+
+### Production Deployment
+For production deployment, consider:
+
+1. **Gunicorn/WSGI Server**:
+   ```
+   gunicorn app:app
+   ```
+
+2. **Docker Containerization**:
+   Create a Dockerfile and deploy using Docker.
+
+3. **Cloud Platforms**:
+   Deploy to services like Heroku, AWS, or Google Cloud Platform.
+
+## Available Cities
+The system includes transportation data for major Tamil Nadu cities including:
+- Chennai
+- Coimbatore
+- Madurai
+- Tiruchirappalli
+- Salem
+- Tirunelveli
+- Thoothukudi
+- Erode
+- Vellore
+- Dindigul
+- Thanjavur
+- Ranipet
+- Sivakasi
+- Karur
+- Udhagamandalam
+- Hosur
+- Nagercoil
+- Kanchipuram
+- Kumbakonam
+- Tirupur
+
 ## Performance Considerations
 - Efficient database queries for rapid transportation cost retrieval
 - Graceful degradation when network connectivity is limited
 - Optimized for both desktop and mobile experiences
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Errors**:
+   - Ensure SQLite is working correctly on your system
+   - Check if the database file has proper write permissions
+
+2. **Google Maps API Issues**:
+   - Verify your API key is valid and has the Directions API enabled
+   - Check for any quota limitations or restrictions
+
+3. **No Transportation Options Showing**:
+   - Ensure you're entering valid Tamil Nadu city names
+   - Try different city combinations as not all routes may be available
+
+### Debug Mode
+For development and troubleshooting, ensure `FLASK_DEBUG=True` is set in your `.env` file.
 
 ## Future Enhancements
 - User accounts for saving favorite routes
 - Historical price tracking
 - Additional transportation options (flights, car rentals)
 - Multi-city trip planning
+- Accommodation recommendations
+- Weather integration for trip planning
+- Support for other Indian states beyond Tamil Nadu
 
 ## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Developer
 Developed by Premkumar K
+
+## Acknowledgements
+- Google Maps Platform for providing the distance calculation API
+- Flask community for the excellent web framework
+- Contributors to the open-source libraries used in this project
