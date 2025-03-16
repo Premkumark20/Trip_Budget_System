@@ -1,4 +1,5 @@
 # Trip Budget System
+Project Link: https://github.com/premkumark20/Trip_Budget_System
 
 ## Overview
 Trip Budget System is a comprehensive web application designed to help travelers manage their transportation budgets efficiently when planning trips across Tamil Nadu, India. The system provides detailed cost comparisons between bus and train options, calculates journey distances, and offers an intuitive interface for making informed travel decisions.
@@ -20,6 +21,10 @@ Trip Budget System is a comprehensive web application designed to help travelers
 ## Demo
 
 *Note: This is a local web application that requires setup before use. The URL `http://127.0.0.1:5000/` will only work after you've completed the installation steps below and started the application on your local machine.*
+
+- Local Flask version: http://localhost:5000
+- GitHub Pages version: https://premkumark20.github.io/Trip_Budget_System
+- Live Demo: https://trip-budget-system.onrender.com
 
 ## Technical Architecture
 
