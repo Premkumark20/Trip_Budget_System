@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Budget Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Form Section -->
+        <div id="form-container" class="form-container">
+            <h1>Tourism Budget Management</h1>
+            <form action="/submit" method="post">
+                <div class="form-group">
+                    <label for="from">From:<span class="required">*</span></label>
+                    <input type="text" id="from" name="from" required value="{{ from_place or '' }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="to">To:<span class="required">*</span></label>
+                    <input type="text" id="to" name="to" required value="{{ to_place or '' }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="total_members">Total Members:</label>
+                    <input type="number" id="total_members" name="total_members" min="1" value="{{ total_members or '' }}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Budget (₹):</label>
+                    <input type="number" id="budget" name="budget" step="0.01" min="0" value="{{ budget or '' }}">
+                </div>
+                
+                <button type="submit">Calculate Journey</button>
+            </form>
+        </div>
+        
+        <!-- Journey Summary -->
+        {% if directions %}
+            <div class="journey-summary">
+                <h2 class="section-heading">Journey Summary</h2>
+                <div class="summary-content">
+                    <p class="journey-detail"><strong>From:</strong> {{ from_place }}</p>
+                    <p class="journey-detail"><strong>To:</strong> {{ to_place }}</p>
+                    <p class="journey-detail"><strong>Distance:</strong> {{ kilometers }}</p>
+                    
+                    {% if total_members %}
+                        <p class="journey-detail"><strong>Total Members:</strong> {{ total_members }}</p>
+                    {% endif %}
+                    
+                    {% if budget %}
+                        <p class="journey-detail"><strong>Budget:</strong> ₹{{ budget }}</p>
+                    {% endif %}
+                    
+                    {% if budget_message %}
+                        <p class="budget-warning">{{ budget_message }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Transport Options -->
+            <div class="transport-options">
+                <h2 class="section-heading">Transport Options</h2>
+                <div class="button-container">
+                    <a href="/bus?from={{ from_place }}&to={{ to_place }}&budget={{ budget or 0 }}&total_members={{ total_members or 1 }}" class="button">View Bus Options</a>
+                    <a href="/train?from={{ from_place }}&to={{ to_place }}&budget={{ budget or 0 }}&total_members={{ total_members or 1 }}" class="button">View Train Options</a>
+                </div>
+            </div>
+        {% endif %}
+        
+        <!-- Transport Cost Details Section -->
+        {% if costs %}
+            <div id="costs-container" class="costs-container">
+                <h2 class="section-heading">
+                    {% if transport_type == 'bus' %}
+                        Bus Cost Details
+                    {% elif transport_type == 'train' %}
+                        Train Cost Details
+                    {% endif %}
+                </h2>
+                <div class="transport-table-container">
+                    <table class="transport-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Cost</th>
+                                <th>Departure</th>
+                                {% if budget and budget > 0 and total_members %}
+                                    <th>Budget Status</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in costs %}
+                                <tr>
+                                    <td>{{ item[0] }}</td>
+                                    <td>₹{{ item[1] }}</td>
+                                    <td>{{ item[2] }}</td>
+                                    {% if budget and budget > 0 and total_members %}
+                                        {% set total_item_cost = item[1] * total_members %}
+                                        <td class="{% if total_item_cost <= budget %}within-budget{% else %}over-budget{% endif %}">
+                                            {% if total_item_cost <= budget %}
+                                                Within Budget
+                                            {% else %}
+                                                Over Budget by ₹{{ (total_item_cost - budget)|round(2) }}
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endif %}
+        
+        <!-- Cost Summary -->
+        <div class="cost-summary {% if not bus_cost_per_person and not train_cost_per_person %}hidden{% endif %}">
+            <h2 class="section-heading">Cost Summary</h2>
+            <div class="cost-cards-container">
+                {% if bus_cost_per_person %}
+                    <div class="cost-card bus">
+                        <h3>Bus</h3>
+                        <p><strong>Cost Per Person:</strong> ₹{{ bus_cost_per_person }}</p>
+                        {% if bus_total_cost %}
+                            <p><strong>Total for {{ total_members }} members:</strong> ₹{{ bus_total_cost }}</p>
+                            {% if budget and budget > 0 %}
+                                <div class="budget-status {% if bus_total_cost <= budget %}within-budget{% else %}over-budget{% endif %}">
+                                    {% if bus_total_cost <= budget %}
+                                        Within Budget
+                                    {% else %}
+                                        Over Budget by ₹{{ (bus_total_cost - budget)|round(2) }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                {% if train_cost_per_person %}
+                    <div class="cost-card train">
+                        <h3>Train</h3>
+                        <p><strong>Cost Per Person:</strong> ₹{{ train_cost_per_person }}</p>
+                        {% if train_total_cost %}
+                            <p><strong>Total for {{ total_members }} members:</strong> ₹{{ train_total_cost }}</p>
+                            {% if budget and budget > 0 %}
+                                <div class="budget-status {% if train_total_cost <= budget %}within-budget{% else %}over-budget{% endif %}">
+                                    {% if train_total_cost <= budget %}
+                                        Within Budget
+                                    {% else %}
+                                        Over Budget by ₹{{ (train_total_cost - budget)|round(2) }}
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div id="map-container" class="map-container {% if not directions %}hidden{% endif %}">
+            {% if directions == "Internet not available" %}
+                <div id="offline-message" class="offline-message">No Internet Connection</div>
+                <div class="blurred-map"></div> <!-- Placeholder for offline mode -->
+            {% elif directions %}
+                <h2 class="section-heading">Route Map</h2>
+                <!-- Only include iframe if we have valid locations -->
+                {% if from_place and to_place and directions != "No route found between these locations" %}
+                    <iframe 
+                        id="google-map"
+                        src="https://www.google.com/maps/embed/v1/directions?key={{ google_maps_api_key }}&origin={{ from_place }}&destination={{ to_place }}"
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="eager"
+                        title="Route map from {{ from_place }} to {{ to_place }}">
+                    </iframe>
+                {% else %}
+                    <div class="no-route-message">{{ directions }}</div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Flash message auto-dismiss
+            const flashMessages = document.querySelectorAll('.flash-message');
+            flashMessages.forEach(message => {
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    setTimeout(() => {
+                        message.style.display = 'none';
+                    }, 500);
+                }, 5000);
+            });
+            
+            // Form validation
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const fromInput = document.getElementById('from');
+                const toInput = document.getElementById('to');
+                
+                if (!fromInput.value.trim() || !toInput.value.trim()) {
+                    e.preventDefault();
+                    alert('Please fill in both the From and To fields');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
