@@ -1,0 +1,18 @@
+# Exported from Render on 2025-03-16T07:46:41Z
+services:
+- type: web
+  name: Trip_Budget_System
+  runtime: python
+  repo: https://github.com/Premkumark20/Trip_Budget_System
+  plan: free
+  envVars:
+  - key: FLASK_DEBUG
+    sync: false
+  - key: GOOGLE_MAPS_API_KEY
+    sync: false
+  - key: SECRET_KEY
+    sync: false
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn app:app
+version: "1"
