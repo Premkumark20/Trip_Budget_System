@@ -1,120 +1,133 @@
-🚆 Trip Budget System 🚌
-A smart travel cost estimator for bus and train journeys in Tamil Nadu.
+# Trip Budget System
 
-📌 Project Overview
-The Trip Budget System is a Python-based application that helps users estimate bus and train travel costs across different cities in Tamil Nadu. It fetches fare details, available routes, and travel timings from a structured SQLite database.
+## Overview
+Trip Budget System is a comprehensive web application designed to help travelers manage their transportation budgets efficiently when planning trips across Tamil Nadu, India. The system provides detailed cost comparisons between bus and train options, calculates journey distances, and offers an intuitive interface for making informed travel decisions.
 
-✅ Key Features:
-✔ City-to-City Travel Costs – Covers major Tamil Nadu destinations.
-✔ Bus & Train Fare Estimation – Includes different seat categories.
-✔ Real-Time Schedule Information – Shows available departure times.
-✔ Budget Calculation – Estimates total travel expenses.
-✔ Web-Based UI – Simple, interactive interface using Flask.
+## Features
 
-📂 Project Structure
-php
-Copy
-Edit
+### Core Functionality
+- **Route Planning**: Calculate distances between any two locations in Tamil Nadu
+- **Cost Comparison**: Compare various bus and train options with detailed pricing
+- **Budget Analysis**: Filter transportation options based on your specified budget
+- **Interactive Maps**: Visualize your journey route using Google Maps integration
+- **Offline Support**: Basic functionality available without internet connection
+
+### Transportation Options
+- **Bus Categories**: Multiple bus types including Luxury AC Sleeper, Semi Sleeper AC, Non AC Seater, and more
+- **Train Classes**: Various train classes including First Class AC, Sleeper Class, AC Chair Car, and more
+- **Timing Options**: Comprehensive departure schedules for planning convenience
+
+## Technical Architecture
+
+### Backend
+- Flask web framework for routing and application logic
+- SQLite database for storing transportation data
+- RESTful approach for handling form submissions and data retrieval
+
+### Frontend
+- Responsive design with mobile-first approach
+- Interactive UI elements for enhanced user experience
+- Real-time budget calculations and validations
+
+### APIs & External Services
+- Google Maps Directions API for distance calculations and route visualization
+- Environment variable configuration for secure credential management
+
+## Installation
+
+### Prerequisites
+- Python 3.7+
+- pip package manager
+- Google Maps API key
+
+### Setup Process
+1. Clone the repository:
+   ```
+   git clone https://github.com/premkumark20/Trip_Budget_System.git
+   cd Trip_Budget_System
+   ```
+
+2. Create and activate a virtual environment:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Configure environment variables:
+   Create a `.env` file in the project root with:
+   ```
+   SECRET_KEY=your_secure_secret_key
+   GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   FLASK_DEBUG=True  # Set to False in production
+   ```
+
+5. Initialize the database:
+   ```
+   python app.py
+   ```
+   Note: Sample transportation data will be automatically populated on first run.
+
+## Usage Guide
+
+1. Start the application:
+   ```
+   python app.py
+   ```
+
+2. Access the web interface at:
+   ```
+   http://127.0.0.1:5000/
+   ```
+
+3. Enter journey details:
+   - Origin location
+   - Destination
+   - Number of travelers
+   - Budget allocation (optional)
+
+4. Explore transportation options:
+   - View journey distance and route map
+   - Compare bus and train options
+   - Filter by budget constraints
+   - Examine detailed cost breakdowns
+
+## Project Structure
+```
 Trip_Budget_System/
-│── app.py               # Main application (Flask backend)
-│── database.py          # Database connection and initialization
-│── budget_data.py       # Travel cost dataset and data insertion
-│── requirements.txt     # List of dependencies
-│── README.md            # Project documentation
-│── .gitignore           # Files to exclude from Git tracking
-│
-├── templates/           # HTML templates for web UI
-│   ├── index.html       # Main user interface
-│
-├── static/              # Static assets (CSS, JS, images)
-│   ├── style.css        # Stylesheet for the web UI
-🚀 Installation & Setup
-Follow these steps to set up and run the project locally.
+├── app.py                # Main application file
+├── database.py           # Database connection and initialization
+├── budget_data.py        # Sample data generation
+├── static/
+│   └── style.css         # CSS styles
+├── templates/
+│   └── index.html        # HTML template
+├── .env                  # Environment variables (not committed)
+├── .gitignore            # Git ignore configuration
+├── requirements.txt      # Project dependencies
+└── README.md             # Project documentation
+```
 
-1️⃣ Clone the Repository
-sh
-Copy
-Edit
-git clone https://github.com/premkumark20/Trip_Budget_System.git
-cd Trip_Budget_System
+## Performance Considerations
+- Efficient database queries for rapid transportation cost retrieval
+- Graceful degradation when network connectivity is limited
+- Optimized for both desktop and mobile experiences
 
-2️⃣ Create a Virtual Environment (Optional)
-sh
-Copy
-Edit
-python -m venv venv
-source venv/bin/activate   # On Mac/Linux
-venv\Scripts\activate      # On Windows
+## Future Enhancements
+- User accounts for saving favorite routes
+- Historical price tracking
+- Additional transportation options (flights, car rentals)
+- Multi-city trip planning
 
-3️⃣ Install Dependencies
-sh
-Copy
-Edit
-pip install -r requirements.txt
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-4️⃣ Initialize the Database
-sh
-Copy
-Edit
-python database.py
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-5️⃣ Insert Sample Data
-sh
-Copy
-Edit
-python budget_data.py
-
-6️⃣ Run the Web Application
-sh
-Copy
-Edit
-python app.py
-🔗 Open in Browser: http://127.0.0.1:5000/
-
-🌐 Web Interface
-The project features a user-friendly web interface built with Flask and HTML.
-
-🏠 Homepage (index.html) – Users enter departure & destination details.
-💰 Fare Results – Displays travel costs & available timings.
-🎨 Styled UI (style.css) – Clean and modern interface for a better experience.
-
-🛠 Technologies Used
-Technology             | Purpose
---------------------------------------------------------------------
-Python (Flask)	       | Backend logic & API handling
-SQLite	               | Lightweight database for travel data storage
-HTML, CSS (Bootstrap)  | Frontend user interface
-JavaScript (Optional   |
-Enhancements)	       | Interactive UI elements
-
-📊 Future Enhancements
-🔹 Live Train & Bus API Integration – Real-time fare updates
-🔹 User Authentication – Login & profile management
-🔹 Cost Comparison Feature – Compare different travel options dynamically
-🔹 Mobile-Responsive Design – Optimize UI for mobile devices
-
-🤝 Contributing
-Contributions are welcome! To contribute:
-
-Fork the repository.
-Create a new branch:
-sh
-Copy
-Edit
-git checkout -b feature-name
-Commit your changes:
-sh
-Copy
-Edit
-git commit -m "Add new feature"
-Push the branch:
-sh
-Copy
-Edit
-git push origin feature-name
-Open a Pull Request 🚀
-
-📜 License
-This project is licensed under the MIT License.
-
-⭐ Like this project? Give it a star on GitHub! 🌟
+## Developer
+Developed by Premkumar K
