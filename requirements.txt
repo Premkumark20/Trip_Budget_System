@@ -1,15 +1,4 @@
-# Core Application Dependencies
-Flask==2.3.3
-requests==2.31.0
+Flask==2.3.2
 python-dotenv==1.0.0
-
-# Database
-sqlite3==3.41.2  # Part of Python standard library
-
-# Development Tools
-pytest==7.4.0
-flake8==6.1.0
-black==23.7.0
-
-# Production Dependencies
+requests==2.30.0
 gunicorn==21.2.0
