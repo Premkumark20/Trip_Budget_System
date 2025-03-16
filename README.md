@@ -24,7 +24,7 @@ Trip Budget System is a comprehensive web application designed to help travelers
 
 - Local Flask version: http://localhost:5000
 - GitHub Pages version: [https://premkumark20.github.io/Trip_Budget_System](https://trip-budget-system.onrender.com)
-- Live Demo: https://trip-budget-system.onrender.com
+- Live Demo: [Trip Budget System](https://trip-budget-system.onrender.com)
 
 ## Technical Architecture
 
