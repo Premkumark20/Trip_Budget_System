@@ -228,7 +228,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - **[Premkumar K](https://github.com/premkumark20)** – Architecture & Deployment  
 - **[Sairam L](https://github.com/sairam5566)** – Development & Features  
 - **[Monishkumar US]()** – Optimization & Documentation  
-- **[Shaik Azeez Ahmad](https://github.com/azeez_shaik)** – Integration & Debugging  
+- **[Shaik Azeez Ahmad](https://github.com/Azeez-Shaik)** – Integration & Debugging  
 
 ## Acknowledgements
 - Google Maps Platform for providing the distance calculation API
