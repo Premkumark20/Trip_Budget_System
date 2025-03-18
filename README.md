@@ -20,11 +20,10 @@ Trip Budget System is a comprehensive web application designed to help travelers
 
 ## Demo
 
-*Note: This is a local web application that requires setup before use. The URL `http://127.0.0.1:5000/` will only work after you've completed the installation steps below and started the application on your local machine.*
+*Note: The application is now fully deployed and accessible online.*
 
-- Local Flask version: http://localhost:5000
-- GitHub Pages version: [https://Trip_Budget_System.github.com](https://trip-budget-system.onrender.com)
-- Live Demo: [Trip Budget System.render.api](https://trip-budget-system.onrender.com)
+- Live Demo: [Trip Budget System](https://trip-budget-system.onrender.com)
+- GitHub Repository: [https://github.com/premkumark20/Trip_Budget_System](https://github.com/premkumark20/Trip_Budget_System)
 
 ## Technical Architecture
 
@@ -123,24 +122,40 @@ Trip_Budget_System/
 └── README.md             # Project documentation
 ```
 
-## Deployment Options
+## Deployment
 
-### Local Development Server
-The application runs on Flask's built-in development server by default, accessible at `http://127.0.0.1:5000/`.
-
-### Production Deployment
-For production deployment, consider:
-
-1. **Gunicorn/WSGI Server**:
+### GitHub Deployment
+1. Create a GitHub repository for your project (or use existing one)
+2. Push your code to GitHub:
    ```
-   gunicorn app:app
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/premkumark20/Trip_Budget_System.git
+   git push -u origin main
    ```
 
-2. **Docker Containerization**:
-   Create a Dockerfile and deploy using Docker.
+3. Create a `README.md` file to document your project (this file)
 
-3. **Cloud Platforms**:
-   Deploy to services like Heroku, AWS, or Google Cloud Platform.
+### Render Deployment
+1. Create an account on [Render](https://render.com/)
+2. From the Render dashboard, click "New" and select "Web Service"
+3. Connect your GitHub repository
+4. Configure your web service:
+   - **Name**: Trip Budget System
+   - **Environment**: Python
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+5. Add the following environment variables:
+   - `SECRET_KEY`: Your secure secret key
+   - `GOOGLE_MAPS_API_KEY`: Your Google Maps API key
+6. Click "Create Web Service"
+7. Your application will be deployed at: https://trip-budget-system.onrender.com
+
+### Accessing the Deployed Application
+The application is now accessible online at:
+- Live Demo: [Trip-Budget-System](https://trip-budget-system.onrender.com)
 
 ## Available Cities
 The system includes transportation data for major Tamil Nadu cities including:
@@ -207,10 +222,18 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 67b0261 (Initial commit)
 ## Developer
-Developed by Premkumar K
+### Development Team  
+
+- **Prem kumar K** – Architecture, deployment.  
+- **Sairam L** – Core development.  
+- **Monish kumar US** – Code optimization.  
+- **Shaik Azeez Ahmad** – Integration, debugging.   
 
 ## Acknowledgements
 - Google Maps Platform for providing the distance calculation API
