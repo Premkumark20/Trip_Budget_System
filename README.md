@@ -23,7 +23,7 @@ Trip Budget System is a comprehensive web application designed to help travelers
 *Note: The application is now fully deployed and accessible online.*
 
 - Live Demo: [Trip Budget System](https://trip-budget-system.onrender.com)
-- GitHub Repository: [https://github.com/premkumark20/Trip_Budget_System](https://github.com/premkumark20/Trip_Budget_System)
+- GitHub Repository: https://premkumark20.github.io/Trip_Budget_System
 
 ## Technical Architecture
 
