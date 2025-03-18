@@ -225,10 +225,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Developer
 ### Development Team  
 
-- **Prem kumar K** – Architecture, Deployment.  
-- **Sairam L** – Core Development & Features. 
-- **Monish kumar US** – Code Optimization & Documentation. 
-- **Shaik Azeez Ahmad** – Troubleshoots technical issues (Tester).  
+- **[Premkumar K](https://github.com/premkumark20)** – Architecture & Deployment  
+- **[Sairam L](https://github.com/sairam5566)** – Development & Features  
+- **[Monishkumar US]()** – Optimization & Documentation  
+- **[Shaik Azeez Ahmad](https://github.com/azeez_shaik)** – Integration & Debugging  
 
 ## Acknowledgements
 - Google Maps Platform for providing the distance calculation API
